@@ -1,0 +1,16 @@
+canvas {
+    height: 300px;
+    width: 500px;
+    border-width: 2px;
+    border-color: #000000;
+    border-style: solid;
+}
+input {
+    
+}
+button {
+    font-size: 30px
+}
+a {
+    font-size: 40px
+}
