@@ -1,16 +1,43 @@
-canvas {
-    height: 300px;
-    width: 500px;
+#canvas_area{
+    background-color: #ffffff;
+    position: relative;
+    width: 550px;
+    height: 400px;
+}
+#curve_canvas{
+    position: absolute;
+    top: 0;
+    left: 32;
+    height: 600px;
+    width: 1000px;
+    border-width: 2px;
+    border-color: #000000;
+    border-style: solid;
+}
+#net_canvas{
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 32;
+    height: 600px;
+    width: 1000px;
+    border-width: 2px;
+    border-color: #000000;
+    border-style: solid;
+}
+#netnum_canvas{
+    pointer-events: none;
+    background-color: #00000000;
+    position: absolute;
+    top: 0;
+    left: 32;
+    height: 600px;
+    width: 1000px;
     border-width: 2px;
     border-color: #000000;
     border-style: solid;
 }
 input {
-    
 }
 button {
-    font-size: 30px
-}
-a {
-    font-size: 40px
 }
