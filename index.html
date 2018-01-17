@@ -3,11 +3,21 @@
     <link rel="stylesheet" type="text/css" href="index.css"/>
 </head>
 <body>
-    power<input id="power_input" type="text" name="fname" value="8"/>
-
-    angle<input id="angle_input" type="text" name="fname" value="27"/>
-    <button id="pre_button">cal</button>
-    <button id="23333">23333</button>
+    <div id="top_blank">
+        c炮弹道计算机
+    </div>
+    <table id="input_block">
+        <tr>
+            <th>预测弹道</th>
+        </tr>
+        <tr>
+            <td>
+                power<input id="power_input" type="text" name="fname" value="8"/><br>
+                angle<input id="angle_input" type="text" name="fname" value="27"/>
+                <button id="pre_button">cal</button>
+            </td>
+        </tr>
+    </table>
     <div id="canvas_area">
         <canvas id="net_canvas"></canvas>
         <canvas id="curve_canvas"></canvas>

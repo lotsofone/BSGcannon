@@ -1,8 +1,10 @@
 function dext(t, vx0){
-    return 5*vx0 - 5*Math.pow(Math.E,(Math.log(vx0)-t/5));
+    if(vx0>=0)return 5*vx0 - 5*Math.pow(Math.E,(Math.log(vx0)-t/5));
+    return 5*vx0 + 5*Math.pow(Math.E,(Math.log(-vx0)-t/5));
 }
 function deyt(t, vy0){
-    return 820-5*Math.pow(Math.E,(Math.log(vy0+164)-0.2*t))-164*t+5*vy0;
+    if(vy0+164>=0)return 820-5*Math.pow(Math.E,(Math.log(vy0+164)-0.2*t))-164*t+5*vy0;
+    return 820+5*Math.pow(Math.E,(Math.log(-vy0-164)-0.2*t))-164*t+5*vy0;
 }
 
 function ssxt(t, vx0){
@@ -14,6 +16,7 @@ function lzoom(wheelDelta, x, y){
     vpx+=x/zoom_level;
     vpy-=y/zoom_level;
     zoom_level*=Math.pow(1.001,wheelDelta);
+    if(zoom_level>1e7)zoom_level=1e7;if(zoom_level<1e-9)zoom_level=1e-9;
     vpx-=x/zoom_level;
     vpy+=y/zoom_level;
     full_draw();
@@ -37,8 +40,9 @@ function draw_pre(){
     var ppower = document.getElementById("power_input").value;
     var pangle = document.getElementById("angle_input").value;
     pangle = pangle*Math.PI/180;
-    var vx0 = ppower*60*Math.cos(pangle);
-    var vy0 = ppower*60*Math.sin(pangle);
+    var v0 = ppower*60-1.5;
+    var vx0 = v0*Math.cos(pangle);
+    var vy0 = v0*Math.sin(pangle);
     //take CanvasRenderingContext2D
     cc = curve_canvas.getContext("2d");
 
@@ -85,8 +89,19 @@ function draw_net(){
     cc.moveTo(xWorldToScreen(0), 0);
     cc.lineTo(xWorldToScreen(0), net_canvas.height);
     cc.stroke();
-    //calculate zoom index
-    min_unit=net_min_unit();
+    //calculate zoom index and min_unit
+    var zoom_index10 = Math.log(zoom_level)/Math.log(10);
+    zoom_index10-=1.7;
+    var zi10int = Math.round(zoom_index10);
+    var zi10float = zoom_index10-zi10int;
+    var min_unit = Math.pow(10,-zi10int);
+    tempvar = Math.pow(10, 0.5-zi10float);
+    if(tempvar>5){
+        min_unit*=5;
+    }
+    else if(tempvar>2){
+        min_unit*=2;
+    }
     //draw net
     cc.lineWidth = 0.6;
     cc.strokeStyle = "#00000040";
@@ -105,28 +120,16 @@ function draw_net(){
     //draw net numbers
     ccac.fillStyle = "#000000";
     ccac.font = '18px sans-serif';
+    function niceStr(a){
+        if(min_unit<1)return (a.toFixed(zi10int));
+        return a.toString();
+    }
     for(var xstart = Math.round(vpx/min_unit)*min_unit;xWorldToScreen(xstart)<net_canvas.width;xstart+=min_unit){
-        cc.fillText(xstart, xWorldToScreen(xstart), 10, 80);
+        cc.fillText(niceStr(xstart), xWorldToScreen(xstart), 10, 80);
     }
     for(var yend = Math.round(vpy/min_unit)*min_unit;yWorldToScreen(yend)<net_canvas.height;yend-=min_unit){
-        cc.fillText(yend, 0, yWorldToScreen(yend));
+        cc.fillText(niceStr(yend), 0, yWorldToScreen(yend));
     }
-
-}
-function net_min_unit(){
-    var zoom_index10 = Math.log(zoom_level)/Math.log(10);
-    zoom_index10-=1.7;
-    var zi10int = Math.round(zoom_index10);
-    var zi10float = zoom_index10-zi10int;
-    var min_unit = Math.pow(10,-zi10int);
-    tempvar = Math.pow(10, 0.5-zi10float);
-    if(tempvar>5){
-        min_unit*=5;
-    }
-    else if(tempvar>2){
-        min_unit*=2;
-    }
-    return min_unit;
 }
 //element
 var curve_canvas = document.getElementById("curve_canvas");
@@ -171,9 +174,5 @@ document.body.addEventListener("mousemove", function(e){
 document.getElementById("pre_button").addEventListener("click", function(){
     draw_pre();
 })
-//23333
-document.getElementById("23333").addEventListener("click", function(){
-})
-
 //initialize
 full_draw();

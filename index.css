@@ -1,13 +1,25 @@
+#top_blank{
+    height: 100px;
+    text-align: center;
+    font-size: 40;
+}
+#input_block{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
 #canvas_area{
+    align-self: center;
     background-color: #ffffff;
     position: relative;
-    width: 550px;
-    height: 400px;
+    width: 1000px;
+    height: 600px;
+    margin: auto;
 }
 #curve_canvas{
     position: absolute;
     top: 0;
-    left: 32;
+    left: 0;
     height: 600px;
     width: 1000px;
     border-width: 2px;
@@ -18,7 +30,7 @@
     background-color: #ffffff;
     position: absolute;
     top: 0;
-    left: 32;
+    left: 0;
     height: 600px;
     width: 1000px;
     border-width: 2px;
@@ -30,7 +42,7 @@
     background-color: #00000000;
     position: absolute;
     top: 0;
-    left: 32;
+    left: 0;
     height: 600px;
     width: 1000px;
     border-width: 2px;
@@ -38,6 +50,7 @@
     border-style: solid;
 }
 input {
+    margin: auto;
 }
 button {
 }
