@@ -227,6 +227,7 @@ function draw_pre(){
         if(isNaN(sstx(xt, vx0))){
             cc.lineTo(scrx, curve_canvas.height+100);break;
         }
+        if(sstx(xt, vx0)<0)break;
         yt=ssyt(sstx(xt, vx0), vy0);
         cc.lineTo(scrx,yWorldToScreen(yt));
     }
