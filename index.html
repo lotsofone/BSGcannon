@@ -8,20 +8,32 @@
     </div>
     <table id="input_block">
         <tr>
-            <th>预测弹道</th>
+            <th>预测弹道</th><th>瞄准目标</th>
         </tr>
         <tr>
             <td>
-                power<input id="power_input" type="text" name="fname" value="8"/><br>
-                angle<input id="angle_input" type="text" name="fname" value="27"/>
-                <button id="pre_button">cal</button>
+                炮力<input id="power_input" type="text" name="fname" value="8"/><br>
+                角度<input id="angle_input" type="text" name="fname" value="25.1572735505587"/>
+                <button id="pre_button">预测</button><br>
+                <a>输入炮力和角度后点击预测</a>
+            </td>
+            <td>
+                距离<input id="enemy_distance" type="text" name="fname" value="1800"/><br>
+                高度角<input id="enemy_angle" type="text" name="fname" value="2"/>
+                <button id="aim_buttom">瞄准</button><br>
+                <a id="aim_buttom_reply">屏幕上双击设置目标后点击瞄准</a>
             </td>
         </tr>
     </table>
     <div id="canvas_area">
-        <canvas id="net_canvas"></canvas>
-        <canvas id="curve_canvas"></canvas>
-        <canvas id="netnum_canvas"></canvas>
+        <canvas id="net_canvas" class="main_chart_canvas"></canvas>
+        <canvas id="curve_canvas" class="main_chart_canvas"></canvas>
+        <canvas id="target_canvas" class="main_chart_canvas"></canvas>
+        <canvas id="netnum_canvas" class="main_chart_canvas"></canvas>
+    </div>
+    <div id="bottom_blank" style="text-align: center">
+        <br><br>
+        by lotsofone<br>
     </div>
     
     <script src="code.js"></script>

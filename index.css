@@ -16,28 +16,7 @@
     height: 600px;
     margin: auto;
 }
-#curve_canvas{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 600px;
-    width: 1000px;
-    border-width: 2px;
-    border-color: #000000;
-    border-style: solid;
-}
-#net_canvas{
-    background-color: #ffffff;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 600px;
-    width: 1000px;
-    border-width: 2px;
-    border-color: #000000;
-    border-style: solid;
-}
-#netnum_canvas{
+.main_chart_canvas{
     pointer-events: none;
     background-color: #00000000;
     position: absolute;
@@ -53,4 +32,9 @@ input {
     margin: auto;
 }
 button {
+}
+#top_blank{
+    height: 100px;
+    text-align: center;
+    font-size: 40;
 }
